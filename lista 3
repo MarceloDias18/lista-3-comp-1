@@ -1,0 +1,133 @@
+from ufrj2 import delta
+
+#Lista 3
+
+#1) funçao para valor absoluto
+
+def absoluto(x): #recebe um valor, tipo int ou float, para a operação
+    numero = x #cria uma variavel 
+    if numero < 0:
+        return numero * (-1) #multiplica numeros negativos por -1, para retornar o valor absoluto
+    else:
+        return numero #para numeros positivos, apenas retorna o numero
+
+x = float(input('Insira um número: ')) #input, convertido para float, para dar ao usuario a oportunidade de testar a função
+
+print(absoluto(x)) #imprime o valor absoluto
+    
+
+
+#2) Quantas sao as raizes reais:
+
+
+def quantas_raizes(a, b, c): #recebe 3 valores, todos int ou float, para a operação
+    descriminante = delta(a,b,c) #cria uma variavel para o discriminante
+    if descriminante < 0:
+        print('Não há raízes reais.') #cria uma condição para o caso de delta ser menor que 0
+    elif descriminante == 0:
+        print('Há apenas uma raíz real.') #cria uma condição para o caso de delta ser igual a 0
+    else:
+        print('Há duas raízes reais.') #cria uma condição para o caso de delta ser maior que 0
+
+a = float(input('Primeiro numero: ')) #input, convertido para float, para dar ao usuario a oportunidade de testar a função
+b = float(input('Segundo numero: ')) #input, convertido para float, para dar ao usuario a oportunidade de testar a função
+c = float(input('Terceiro numero: ')) #input, convertido para float, para dar ao usuario a oportunidade de testar a função
+ 
+quantas_raizes(a, b, c) #chama a função com as tres variaveis criadas
+
+#3) Repetição de strings:
+
+def repeticao(texto, y): #recebe dois parametros, uma string e um numero int
+    str_repeat = texto * y #cria uma variavel para a operaçao
+    return str_repeat #retorna a variavel
+
+texto = input('Insira uma frase: ') #input para dar ao usuario a oportunidade de testar a função, inserindo uma string
+y = int(input('Quantas vezes gostaria de repetir a frase? ')) #input, convertido para int, para dar ao usuario a oportunidade de testar a função, multiplicando a string
+
+print(repeticao(texto, y)) #imprime a funçao para as variaveis criadas
+
+#4) dia/mês/ano:
+
+def formatar_data(dia, mes, ano):  #recebe 3 valores, todos int ou float, para a operação
+    date =  f"{dia}/{mes}/{ano}" #utiliza uma f-string para formatar as datas
+    return date
+
+dia = int(input("Digite o dia: "))#input, convertido para int, para dar ao usuario a oportunidade de testar a função
+mes = int(input("Digite o mês: "))#input, convertido para int, para dar ao usuario a oportunidade de testar a função
+ano = int(input("Digite o ano: "))#input, convertido para int, para dar ao usuario a oportunidade de testar a função
+
+print(formatar_data(dia, mes, ano)) #imprime e chama a funçao para as variaveis criadas
+
+#5) função:
+
+# #quando 0 <= x <2, y = x
+
+# # quando 2 <= x < 3.5 , y = 2
+
+# # quando 3.5 <= x < 5, y = 3
+
+# # para x => 5, y = x^2 - 10x +28
+
+def funçao(x): #recebe o valor de x em algum momento especifico da funçao
+    if 0 <= x <2: #primeira condiçao, direcionada para a primeira parte do grafico, uma funçao afim
+        valor = x # y = x
+    elif 2 <= x < 3.5: #segunda condiçao, direcionada para a segunda parte do grafico, uma funçao linear
+        valor = 2 #y = 2
+    elif 3.5 <= x < 5: #terceira condiçao, direcionada para a terceira parte do grafico, uma funçao linear
+        valor = 3 #y = 3
+    elif x >= 5: #quarta condiçao, direcionada para a quarta parte do grafico, uma funçao quadratica
+        valor = x**2 - 10*x +28 #y = x**2 - 10*x +28 
+    elif x < 0: #ultima condição, nao aparente no grafico, mas no enunciado, para todos os valores abaixo de 0, y = 0
+        valor = 0 # y = 0
+    return print("o valor da função é ", valor) #retorna e imprime uma string, seguida da variavel representando y
+
+funçao(8) #teste arbitario
+
+#6) INSS:
+
+#a)uma funcao que calcule e retorne o valor do desconto de imposto de INSS de acordo com a tabela do INSS, ou seja,
+# 6% para salario bruto ate R$2.000,00 (inclusive);
+# 8% para salario bruto ate R$3.000,00 (inclusive);
+# 10% para salario bruto acima de R$3.000,00;
+
+def descontos_inss(x): #recebe o valor de x, o salario bruto
+    if x <= 2000: #condicao para salarios menores ou iguais a 2000 reais
+        return x * 0.06 #retorna o desconto
+    elif 2000 < x <= 3000: #condicao para salarios entre 2000 e 3000 reais, 3000 incluso
+        return x * 0.08 #retorna o desconto
+    elif x > 3000: #condicao para salarios maiores que 3000 reais
+        return x * 0.1 #retorna o desconto
+    else: #condição para evitar erros
+        return 0
+
+print('O desconto é de: ', descontos_inss(1500)) #retorna e imprime uma string, seguida da função para um valor arbitrario
+
+#b) uma fun ̧c ̃ao que calcule e retorne o valor do desconto de IR de acordo com a tabela do IR, ou seja,
+# 11% para salario bruto ate R$2.500,00 (inclusive);
+# 15% para salario bruto ate R$5.000,00 (inclusive);
+# 22% para salario bruto acima de R$5.000,00;
+
+def descontos_ir(x): #recebe o valor de x, o salario bruto
+    if x <= 2500: #condicao para salarios menores ou iguais a 2500 reais
+        return x * 0.11 #retorna o desconto
+    elif 2500 < x <= 5000: #condicao para salarios entre 2500 e 5000 reais, 5000 incluso
+        return x * 0.15 #retorna o desconto
+    elif x > 5000: #condicao para salarios maiores que 5000 reais
+        return x * 0.22 #retorna o desconto
+    else: #condição para evitar erros
+        return 0 
+
+
+print('O desconto é de: ', descontos_ir(5000)) #retorna e imprime uma string, seguida da função para um valor arbitrario
+
+#c) uma funcao que calcule e retorne o salario lıquido, usando as funcoes criadas nos itens a e b.
+
+def salario_liquido(x): #recebe o valor de x, o salario bruto
+    desconto_inss = descontos_inss(x) #cria uma variavel para o valor da funçao descontos_inss
+    desconto_ir = descontos_ir(x) #cria uma variavel para o valor da funçao descontos_ir
+    net = x - (desconto_inss + desconto_ir) #cria uma variavel para o salario liquido
+    return net #retorna a variavel 
+
+x =  float(input('Insira o salario bruto: ')) #input, convertido para float, para dar ao usuario a oportunidade de testar a função
+
+print('Seu salario líquido é', salario_liquido(x), 'reais.') #retorna e imprime uma string, seguida da função para o input anterior, e termina com outra string.
